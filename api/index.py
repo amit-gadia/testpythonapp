@@ -1,11 +1,13 @@
 from flask import *
-
-from mqtt_connector import mqtt_client
-
-app = Flask("__main__")
+from utils.mqtt_connector import mqtt_client
+app = Flask(__name__)
 
 
 mqtt_client_var = mqtt_client()
+
+@app.route('/home')
+def home():
+    return 'Hello, World!'
 
 @app.route("/")
 def root_app():
@@ -32,6 +34,3 @@ def addNewMQTTTopic():
     mqtt_client_var.subscribe(topicname)
     
     return "addNewTopic"
-
-
-app.run(debug=True,host='0.0.0.0',port=443)
