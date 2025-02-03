@@ -20,6 +20,17 @@ def root_app():
 
 
 
+@app.route("/testinggit")
+def testinggit():
+    
+    number = request.args.get("phno")    
+    print(mqtt_client_var.is_connected(),"mqtt_client_varmqtt_client_var")
+    
+    mqtt_client_var.publish("test/topic", number)
+    return "hello"
+
+
+
 
 @app.route("/publishOnTopic")
 def publishOnTopic():
